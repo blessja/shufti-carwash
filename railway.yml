@@ -1,0 +1,12 @@
+version: 1
+services:
+  - name: backend
+    type: node
+    buildCommand: npm install && npm run build
+    env:
+      - DATABASE_URL=your-database-url
+      - API_KEY=your-api-key
+
+  - name: frontend
+    type: static
+    path: frontend/build
