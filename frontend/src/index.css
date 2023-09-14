@@ -1,0 +1,760 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+p {
+  line-height: 1.7;
+  color: #d0d8df;
+}
+
+ul {
+  list-style: none;
+}
+
+/* li {
+  line-height: 2.2;
+} */
+
+/* h1,
+h2,
+h3 {
+  font-weight: 600;
+  margin-bottom: 10px;
+  font: normal;
+} */
+
+h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #4682b4;
+  font-family: "Montserrat", sans-serif;
+}
+
+.dis-h2 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.53px;
+  padding-top: 10px;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.logo-text {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 60px;
+}
+
+.header ul {
+  display: block;
+  align-items: center;
+  order: 5;
+}
+
+.header ul li {
+  margin-left: 20px;
+}
+
+.header ul li a {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+
+.header ul li a:hover {
+  color: #777;
+}
+
+.header ul li a svg {
+  margin-right: 5px;
+}
+
+.heading {
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 0px;
+  
+  color: #4682b4;
+  
+}
+
+.heading p {
+  color: #4682b4;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 200;
+  letter-spacing: 0.4px;
+  opacity: 1;
+}
+
+.stdb {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500 !important;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dbe2ed;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-family: inherit;
+  background: #dbe2ed 0% 0% no-repeat padding-box;
+}
+
+input::placeholder {
+  color: #4682b4;
+}
+
+.form-group label {
+  text-align: left;
+  display: block;
+  margin: 0 0 5px 3px;
+  color: #4682b4;
+}
+
+.btn {
+  padding: 10px 5px;
+  border: 1px solid #4682b4;
+  border-radius: 25px;
+  background: #4682b4;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  appearance: button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.price-list {
+  width: 344px;
+  height: 243px;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans;
+  background: #dbe2ed 0% 0% no-repeat padding-box;
+  border-radius: 8px;
+  opacity: 1;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #4682b4;
+}
+
+.price-list-heading {
+  width: 66px;
+  height: 15px;
+  text-align: left;
+  font: normal normal 600 12px/15px Montserrat;
+  font: semiBold, sans-serif;
+  font-size: 12px;
+  letter-spacing: -0.12px;
+  color: #4682b4;
+  margin-left: 10px;
+  padding-top: 15px;
+}
+
+.list-items {
+  margin-top: 50px;
+}
+
+.type-1 {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding-right: 27px;
+}
+
+.user-card {
+  opacity: 1;
+}
+
+.btn svg {
+  margin-right: 8px;
+}
+
+.btn-reverse {
+  background: #fff;
+  color: #000;
+}
+
+.btn-block {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.btn:hover {
+  transform: scale(0.98);
+}
+
+.loadingSpinnerContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingSpinner {
+  width: 64px;
+  height: 64px;
+  border: 8px solid;
+  border-color: #000 transparent #555 transparent;
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+}
+
+.wash-history {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.date-column,
+.number-column,
+.text-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.date-item,
+.number-item,
+.text-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.date-number,
+.number,
+.text {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.status-text {
+  font-size: 14px;
+  color: #054b1a;
+}
+
+/* ============================================================================ */
+/* Modal styles */
+
+.loginicon {
+  position: absolute;
+  width: 80px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bolder;
+  color: black;
+  height: 40px;
+  left: 85%;
+  top: 10px;
+  background: #2bc6ff;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+.loginicon:hover {
+  color: white;
+}
+
+.login-form {
+  margin-top: 0;
+  width: 80%;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  /* min-height: 100vh; */
+}
+
+.form-box {
+  /* margin-top: 7vh; */
+  opacity: 80%;
+  background: #dbe2ed;
+  padding-right: 64px;
+  padding-left: 78px;
+  padding-bottom: 2px;
+  padding-top: 13px;
+  border-radius: 20px;
+  box-shadow: 10px 10px 10px 1px rgba(0, 0, 0, 0.2);
+}
+
+.login-text {
+  width: 100%;
+  color: white;
+  border-bottom: 2px solid white;
+  line-height: 30px;
+  width: 100%;
+  font-weight: bolder;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5vh;
+}
+
+label {
+  color: white;
+  width: 100%;
+  text-align: center;
+}
+
+.login-box {
+  border: 1px solid lightgrey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  padding: 2px;
+  padding-left: 10px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin: 5px;
+  font-size: 11pt;
+  background: transparent;
+  transition: 1s;
+  outline: none;
+}
+
+.login-btn {
+  width: 75%;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(48, 172, 251);
+  color: white;
+  margin-top: 5px;
+  border-radius: 20px;
+  border: none;
+  font-size: 15pt;
+  font-weight: 700;
+  transition: 1s;
+  outline: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.login-btn:hover {
+  transform: scale(1.03);
+  letter-spacing: 4px;
+  background-color: #7fffd4;
+  color: #1e90ff;
+}
+
+.show {
+  display: block;
+  transition: 800ms;
+  opacity: 1;
+}
+
+.show.active {
+  transform: translateY(100px) scale(0) rotateY(180deg);
+  opacity: 0;
+}
+
+/* ===================================================================== */
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 654px) {
+  .form {
+    width: 90%;
+  }
+
+  .heading h1 {
+    font-size: 2rem;
+  }
+
+  .heading p {
+    font-size: 12px;
+  }
+  .logo-text {
+    font-size: 20px !important;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+  }
+
+  .logo {
+    gap: 60px !important;
+  }
+
+  .heading ul {
+    display: block !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    width: 100%;
+  }
+  .form {
+    width: 90%;
+  }
+
+  .heading h1 {
+    font-size: 2rem;
+    font-family: "Montserrat", sans-serif;
+  }
+  .carwash-h {
+    font-size: 19px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+  }
+  .dis-h2 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.53px;
+    padding-top: 10px;
+  }
+  .cta-p {
+    font-size: 10px;
+  }
+  .heading {
+    width: 100%;
+    padding: 0;
+  }
+  /* .heading p {
+    font: 200;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.4px;
+    color: #4682B4;
+  } */
+  .logo-text {
+    font-size: 16px !important;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+  }
+
+  .login-title {
+    font-size: 19px;
+  }
+  .btn-block {
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+  h4 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    margin-top: 30px;
+  }
+}
+
+/* Portrait */
+@media only screen and (max-width: 320px) {
+  .form {
+    width: 90% !important;
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+  }
+
+  .heading h1 {
+    font-size: 2rem;
+  }
+
+  .heading p {
+    font-size: 1.5rem;
+  }
+  .logo-text {
+    font-size: 30px !important;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+  }
+
+  .heading ul {
+    display: block !important;
+  }
+
+  .login-form {
+    margin-top: 0;
+    width: 80%;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    /* min-height: 100vh; */
+  }
+  
+  .form-box {
+    /* margin-top: 7vh; */
+    opacity: 80%;
+    background: #dbe2ed;
+    padding-right: 64px;
+    padding-left: 78px;
+    padding-bottom: 2px;
+    padding-top: 13px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px 1px rgba(0, 0, 0, 0.2);
+  }
+  
+  .header .logo {
+    width: 100%;
+  }
+  .carwash-h {
+    padding-right: 10px !important;
+  }
+
+  /* .logo {
+    gap: 10px !important;
+  } */
+
+  .header img {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  /* .logo-text{
+    font-size: 16px !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+  } */
+
+  .mobile-menu ul li {
+    font-size: 0.5rem;
+  }
+
+  .container {
+    padding: 0;
+  }
+  /* CSS rules specific to iPhone 5/SE in portrait mode */
+}
+
+/* Landscape */
+@media only screen and (max-width: 568px) {
+  /* CSS rules specific to iPhone 5/SE in landscape mode */
+}
+
+/* Portrait */
+@media only screen and (max-width: 375px) {
+  .form {
+    width: 90%;
+  }
+
+  .heading h1 {
+    font-size: 2rem;
+  }
+
+  .heading p {
+    font-size: 1.5rem;
+  }
+  .logo-text {
+    font-size: 16px !important;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+  }
+
+  .heading ul {
+    display: block !important;
+  }
+
+  .header .logo {
+    width: 100%;
+  }
+
+  .header img {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .logo-text {
+    font-size: 10px !important;
+  }
+
+  .mobile-menu ul li {
+    font-size: 0.5rem;
+  }
+  .logo {
+    gap: 40px !important;
+  }
+
+  .container {
+    padding: 0;
+  }
+  /* CSS rules specific to iPhone 6/7/8 in portrait mode */
+}
+
+/* Landscape */
+@media only screen and (max-width: 667px) {
+  .form {
+    width: 90%;
+  }
+
+  .heading h1 {
+    font-size: 2rem;
+  }
+
+  .heading p {
+    font-size: 1.5rem;
+  }
+  .logo-text {
+    font-size: 16px !important;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+  }
+
+  .heading ul {
+    display: block !important;
+  }
+
+  .header .logo {
+    width: 100%;
+  }
+
+  .header img {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .logo-text {
+    font-size: 16px !important;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+  }
+
+  .mobile-menu ul li {
+    font-size: 0.5rem;
+  }
+
+  .container {
+    padding: 0;
+  }
+  /* CSS rules specific to iPhone 6/7/8 in landscape mode */
+}
+
+/* Portrait */
+@media only screen and (max-width: 414px) {
+  /* CSS rules specific to iPhone 6/7/8 Plus in portrait mode */
+}
+
+/* Landscape */
+@media only screen and (max-width: 736px) {
+  .form {
+    width: 90% !important;
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+  }
+
+  .heading h1 {
+    font-size: 2rem;
+  }
+
+  .heading p {
+    font-size: 1.5rem;
+  }
+  .logo-text {
+    font-size: 16px !important;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+  }
+
+  .heading ul {
+    display: block !important;
+  }
+
+  .header .logo {
+    width: 100%;
+  }
+
+  .header img {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .logo-text {
+    font-size: 16px !important;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+  }
+
+  .mobile-menu ul li {
+    font-size: 0.5rem;
+  }
+
+  .container {
+    padding: 0;
+  }
+  /* CSS rules specific to iPhone 6/7/8 Plus in landscape mode */
+}
+
+/* Portrait */
+@media only screen and (max-width: 375px) {
+  /* CSS rules specific to iPhone X/XS in portrait mode */
+}
+
+/* Landscape */
+@media only screen and (max-width: 812px) {
+  /* CSS rules specific to iPhone X/XS in landscape mode */
+}
+
+/* Portrait */
+@media only screen and (max-width: 414px) {
+  /* CSS rules specific to iPhone XR/11 in portrait mode */
+}
+
+/* Landscape */
+@media only screen and (max-width: 896px) {
+  /* CSS rules specific to iPhone XR/11 in landscape mode */
+}
+
+/* Portrait */
+@media only screen and (max-width: 414px) {
+  /* CSS rules specific to iPhone XS Max/11 Pro Max in portrait mode */
+}
+
+/* Landscape */
+@media only screen and (max-width: 896px) {
+  /* CSS rules specific to iPhone XS Max/11 Pro Max in landscape mode */
+}
