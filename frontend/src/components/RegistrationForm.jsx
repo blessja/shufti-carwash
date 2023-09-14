@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from 'axios';
-import { FaUser } from "react-icons/fa";
+
 
 const RegistrationForm = () => {
   const { carWashId } = useParams();
@@ -41,6 +41,7 @@ const RegistrationForm = () => {
     try {
       const response = await axios.post(`http://localhost:5000/api/users/${carWashId}/register`, userData);
       toast.success('Registration successful');
+      console.log(response)
       navigate(`/staff/dashboard/${carWashId}`); // Navigate to the staff dashboard with the carWashId
     } catch (error) {
       toast.error('Registration failed. Please try again.');

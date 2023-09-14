@@ -8,15 +8,15 @@ const Dashboard = ({carwashId}) => {
   const navigate = useNavigate(); 
   const [carWash, setCarWash] = useState(null);
 
-  const handleClick = () => {
-    handleLoginClick();
-  };
+  // const handleClick = () => {
+  //   handleLoginClick();
+  // };
 
-  const [isShowLogin, setIsShowLogin] = useState(true);
+  // const [ setIsShowLogin] = useState(true);
 
-  const handleLoginClick = () => {
-    setIsShowLogin((isShowLogin) => !isShowLogin);
-  };
+  // const handleLoginClick = () => {
+  //   setIsShowLogin((isShowLogin) => !isShowLogin);
+  // };
   useEffect(() => {
     // Fetch car wash data using the `id` parameter
     fetchCarWashData(id);

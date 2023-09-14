@@ -25,6 +25,7 @@ const UserDetails = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
 
+  console.log(isButtonDisabled)
   const handleHomeClick = () => {
     window.history.back(); // Go back to the previous page
   };
