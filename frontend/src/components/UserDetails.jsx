@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import Snackbar from "@material-ui/core/Snackbar";
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 
 
@@ -34,7 +34,7 @@ const UserDetails = () => {
     const fetchUser = async () => {
       try {
         const response = await fetch(
-          `https://serene-peak-68584-65eee5519a14.herokuapp.com/api/users/${id}`
+          `http://localhost:5000/api/users/${id}`
         );
         const data = await response.json();
         setUser(data);
