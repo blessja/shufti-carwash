@@ -1,12 +1,22 @@
-version: 1
-services:
-  - name: backend
-    type: node
-    buildCommand: npm install && npm run build
-    env:
-      - DATABASE_URL=your-database-url
-      - API_KEY=your-api-key
+# railway.toml
 
-  - name: frontend
-    type: static
-    path: frontend/build
+# The name of your project on Railway
+name = "shufti"
+
+# Environment Variables
+[env.production]
+SECRET_KEY = "your-secret-key"
+MONGODB_URI = "your-mongodb-uri"
+# Add other environment variables as needed
+
+# Build settings
+[build]
+frontend.base = "./frontend"  # Specify the directory for the frontend code
+backend.base = "./backend"    # Specify the directory for the backend code
+
+[build.environment]
+NODE_ENV = "production"
+
+[build.services]
+frontend.command = "npm start" # Replace with your frontend start command
+backend.command = "npm run server" # Replace with your backend start command
