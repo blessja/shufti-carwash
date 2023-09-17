@@ -19,10 +19,21 @@ function UserDashboard() {
   useEffect(() => {
     const fetchUserData = async (userId) => {
       try {
-        const response = await Axios.get(`https://shufti-carwash-server.vercel.app/api/users/${userId}`);
-        const data = response.data;
-
-        if (response.status === 200) {
+        const requestOptions = {
+          method: 'POST',
+          mode: 'cors',
+          body: JSON.stringify({ userId }), // Adjust the data you want to send
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        };
+    
+        const response = await fetch(`https://shufti-carwash-server.vercel.app/api/users/${userId}`, requestOptions);
+        const data = await response.json();
+    
+        console.log('Response:', data);
+    
+        if (response.ok) {
           setUserInfo(data);
           setWashHistory(data.washHistory.length > 0 ? data.washHistory : []);
         } else {
@@ -33,6 +44,7 @@ function UserDashboard() {
         console.error('Error:', error.message);
       }
     };
+    
 
     // Fetch user data when the component mounts
     if (userId && carWashId) {
