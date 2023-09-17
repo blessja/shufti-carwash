@@ -6,10 +6,10 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
-import Axios from 'axios'; // Make sure Axios is installed
+import Axios from 'axios';
 
 function UserDashboard() {
-  const { userId, carWashId } = useParams(); // Get 'userId' from URL parameters
+  const { userId, carWashId } = useParams();
   const [userInfo, setUserInfo] = useState(null);
   const [washHistory, setWashHistory] = useState([]);
   const [error, setError] = useState(null);
@@ -19,38 +19,38 @@ function UserDashboard() {
   useEffect(() => {
     const fetchUserData = async (userId) => {
       try {
-        const requestOptions = {
-          method: 'POST',
-          mode: 'cors',
-          body: JSON.stringify({ userId }), // Adjust the data you want to send
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        };
-    
-        const response = await fetch(`https://shufti-carwash-server.vercel.app/api/users/${userId}`, requestOptions);
-        const data = await response.json();
-    
-        console.log('Response:', data);
-    
-        if (response.ok) {
-          setUserInfo(data);
-          setWashHistory(data.washHistory.length > 0 ? data.washHistory : []);
-        } else {
-          setError(data.message);
+        // Fetch user data
+        const userResponse = await Axios.get(`https://shufti-carwash-server.vercel.app/api/users/${userId}`);
+        const userData = userResponse.data;
+
+        if (userResponse.status !== 200) {
+          setError('Error fetching user data.');
+          return;
         }
+
+        // Fetch wash history
+        const historyResponse = await Axios.get(`https://shufti-carwash-server.vercel.app/api/users/${userId}/wash-history`);
+        const historyData = historyResponse.data;
+
+        if (historyResponse.status !== 200) {
+          setError('Error fetching wash history.');
+          return;
+        }
+
+        setUserInfo(userData);
+        setWashHistory(historyData);
       } catch (error) {
         setError('Error fetching user data.');
         console.error('Error:', error.message);
       }
     };
-    
 
-    // Fetch user data when the component mounts
+    // Fetch user data and wash history when the component mounts
     if (userId && carWashId) {
       fetchUserData(userId);
     }
   }, [userId, carWashId]);
+
 
   const formatDate = (dateString) => {
     const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
@@ -66,8 +66,7 @@ function UserDashboard() {
   console.log(getNextWashNumber);
 
   const onLogout = () => {
-    dispatch(logout());
-    dispatch(reset());
+   
     navigate(`/${carWashId}/dashboard`);
 
   };
@@ -125,6 +124,7 @@ function UserDashboard() {
   );
 }
 
+export default UserDashboard;
 
 
 // import React, { useEffect, useState } from 'react';
