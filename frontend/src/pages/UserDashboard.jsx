@@ -8,6 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 import { logout, reset } from '../features/auth/authSlice';
+import Axios from 'axios';
 
 
 
@@ -34,12 +35,12 @@ function UserDashboard() {
   
   const fetchUserData = async (userId) => {
     try {
-      const response = await fetch(`https://shufti-carwash-server.vercel.app/api/users/${userId}`);
-      const data = await response.json();
-
+      const response = await Axios.get(`https://shufti-carwash-server.vercel.app/api/users/${userId}`);
+      const data = response.data;
+  
       console.log('Response:', data);
-
-      if (response.ok) {
+  
+      if (response.status === 200) {
         setUserInfo(data);
         setWashHistory(data.washHistory.length > 0 ? data.washHistory : []);
       } else {
@@ -47,9 +48,10 @@ function UserDashboard() {
       }
     } catch (error) {
       setError('Error fetching user data.');
-      console.log('Error:', error.message);
+      console.error('Error:', error.message);
     }
   };
+  
 
   const formatDate = (dateString) => {
     const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
