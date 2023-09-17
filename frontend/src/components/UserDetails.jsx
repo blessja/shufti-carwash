@@ -34,7 +34,7 @@ const UserDetails = () => {
     const fetchUser = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/users/${id}`
+          `https://shufti-carwash-server.vercel.app/api/users/${id}`
         );
         const data = await response.json();
         setUser(data);
@@ -50,7 +50,7 @@ const UserDetails = () => {
   const handleWashCar = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/users/${id}/wash`,
+        `https://shufti-carwash-server.vercel.app/api/users/${id}/wash`,
         {
           method: "POST",
         }
