@@ -37,7 +37,7 @@ function UserDashboard() {
       const response = await fetch(`https://shufti-carwash-server.vercel.app/api/users/${userId}`);
       const data = await response.json();
 
-      // console.log('Response:', data);
+      console.log('Response:', data);
 
       if (response.ok) {
         setUserInfo(data);
