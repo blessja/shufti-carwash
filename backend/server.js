@@ -4,7 +4,7 @@ const colors = require('colors');
 const dotenv = require('dotenv').config();
 const { errorHandler } = require('./middleware/errorMiddleware');
 const connectDB = require('./config/db');
-const cors = require('cors');
+const cors = require('cors'); 
 
 const carWashRoutes = require('./routes/carwashRoute');
 const userRoutes = require('./routes/userRoutes');
@@ -14,7 +14,12 @@ const port = process.env.PORT || 5000;
 connectDB();
 
 const app = express();
-app.use(cors());
+const corsOptions = {
+  origin: 'https://shufti-carwash.vercel.app', // Replace with your frontend URL
+};
+
+app.use(cors(corsOptions));
+
 
 
 app.use(express.json());
