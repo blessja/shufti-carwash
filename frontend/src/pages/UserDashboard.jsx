@@ -25,7 +25,7 @@ function UserDashboard() {
   useEffect(() => {
     if (!user) {
       // If the user is not logged in, redirect them to the login page
-      navigate(`/${carWashId}/dashboard`);
+      // navigate(`/${carWashId}/dashboard`);
     } else {
       // Fetch user information and wash history from the server
       fetchUserData(user._id); // Assuming the user object has an _id property
