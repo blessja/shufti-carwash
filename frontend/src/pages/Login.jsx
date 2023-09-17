@@ -26,12 +26,12 @@ function Login() {
   const onSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-
+  
     const userData = {
       phone,
       password,
     };
-
+  
     try {
       const response = await fetch(`https://shufti-carwash-server.vercel.app/api/users/${carWashId}/login`, {
         method: 'POST',
@@ -40,23 +40,29 @@ function Login() {
         },
         body: JSON.stringify(userData),
       });
-
+  
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message);
       }
-
+  
+      const responseData = await response.json(); // Parse the response JSON
+  
       setIsLoading(false);
       toast.success('Login successful');
-
-      // Redirect or perform any other action upon successful login
-      const userId = ''; // Replace with the user ID if applicable
+  
+      // Extract the user ID from the response data
+      const userId = responseData._id || ''; // Assuming the user ID is stored in the "_id" field
+  
+      // Redirect the user to the dashboard with the extracted user ID
       navigate(`/${carWashId}/user/dashboard/${userId}`);
     } catch (error) {
       setIsLoading(false);
-      toast.error(error.message);
+      console.error(error); // Log the error for debugging
+      toast.error('Login failed. Please check your credentials.');
     }
   };
+  
 
   if (isLoading) {
     return <Spinner />;
