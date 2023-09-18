@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-function UserDashboard({ userId }) {
+function UserDashboard() {
   const [washHistory, setWashHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { userId } = useParams();
+  
+
 
   useEffect(() => {
     console.log('Fetching wash history for userId:', userId);
