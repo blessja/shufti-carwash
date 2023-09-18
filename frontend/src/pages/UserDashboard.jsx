@@ -13,7 +13,7 @@ function UserDashboard({ userId }) {
   
   const fetchWashHistory = (userId) => {
     setIsLoading(true);
-  
+  console.log('Fetching wash history for userId:', userId)
     fetch(`https://shufti-carwash-server.vercel.app/api/users/${userId}/wash-history`)
       .then((response) => {
         if (!response.ok) {
