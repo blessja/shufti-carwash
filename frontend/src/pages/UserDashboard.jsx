@@ -4,7 +4,10 @@ import { useParams } from 'react-router-dom';
 function UserDashboard() {
   const [washHistory, setWashHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  
   const { userId } = useParams();
+console.log('User ID:', userId);
+
   
 
 
@@ -17,11 +20,11 @@ function UserDashboard() {
   
   const fetchWashHistory = (userId) => {
     setIsLoading(true);
-  console.log('Fetching wash history for userId:', userId)
+  
     fetch(`https://shufti-carwash-server.vercel.app/api/users/${userId}/wash-history`)
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Failed to fetch wash history');
+          throw new Error(`Failed to fetch wash history (${response.status}: ${response.statusText})`);
         }
         return response.json();
       })
@@ -30,7 +33,7 @@ function UserDashboard() {
         setWashHistory(data);
       })
       .catch((error) => {
-        console.error('Error fetching wash history:', error);
+        console.error('Error fetching wash history:', error.message);
       })
       .finally(() => {
         setIsLoading(false);
