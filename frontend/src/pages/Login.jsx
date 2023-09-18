@@ -55,7 +55,7 @@ function Login() {
       const userId = responseData._id || ''; // Assuming the user ID is stored in the "_id" field
   
       // Redirect the user to the dashboard with the extracted user ID
-      navigate(`/${carWashId}/user/dashboard/${userId}`);
+      navigate(`/user/dashboard/${userId}`);
     } catch (error) {
       setIsLoading(false);
       console.error(error); // Log the error for debugging

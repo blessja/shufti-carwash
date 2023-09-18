@@ -23,7 +23,7 @@ function App() {
             <Route path='/' element={<CarWashList />} />
             <Route path='/login/:carWashId' element={<Login />} />
             <Route path='/staff/login/:carWashId' element={<StaffLogin />} />
-            <Route path='/user/dashboard/:carWashId' element={<UserDashboard />} />
+            <Route path='/user/dashboard/:id' element={<UserDashboard />} />
             {/* <Route path='/:carWashId/user/dashboard/:id' element={<UserDashboard />} /> */}
      
             
