@@ -25,8 +25,8 @@ function App() {
             <Route path='/staff/login/:carWashId' element={<StaffLogin />} />
             <Route path='/user/dashboard/:carWashId' element={<UserDashboard />} />
             <Route path='/:carWashId/user/dashboard/:id' element={<UserDashboard />} />
-            <Route path='/:carWashId/user/dashboard' element={<UserDashboard />} />
-            <Route path='/staff/dashboard/:carWashId' element={<StaffDashboard />} />
+     
+            
             <Route path='/staff/dashboard/' element={<StaffDashboard />} />
             <Route path='/users/:id' element={<UserDetails />} />
             <Route path='/users/:id/:carWashId' element={<UserDetails />} />
