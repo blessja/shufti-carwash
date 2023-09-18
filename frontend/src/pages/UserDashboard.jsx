@@ -5,19 +5,23 @@ function UserDashboard({ userId }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    console.log('Fetching wash history for userId:', userId);
+  
     // Fetch wash history data when the component mounts
     fetchWashHistory(userId);
   }, [userId]);
-
+  
   const fetchWashHistory = async (userId) => {
     try {
+      console.log('Fetching wash history...');
       // Make a GET request to fetch the user's wash history
       const response = await fetch(
         `https://shufti-carwash-server.vercel.app/api/users/${userId}/wash-history`
       );
-
+  
       if (response.ok) {
         const data = await response.json();
+        console.log('Wash history data:', data);
         setWashHistory(data);
       } else {
         console.error('Failed to fetch wash history');
@@ -28,6 +32,7 @@ function UserDashboard({ userId }) {
       setIsLoading(false);
     }
   };
+  
 
   return (
     <div>
