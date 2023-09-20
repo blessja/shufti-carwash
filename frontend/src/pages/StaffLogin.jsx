@@ -26,7 +26,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`https://shufti-carwash-server.vercel.app/api/staff/${carwashId}/login`, {
+      const response = await axios.post(`https://localhost:5000/api/staff/${carwashId}/login`, {
         phone,
         password,
       });

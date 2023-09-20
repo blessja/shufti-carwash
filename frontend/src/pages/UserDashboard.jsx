@@ -21,7 +21,7 @@ console.log('User ID:', userId);
   const fetchWashHistory = (userId) => {
     setIsLoading(true);
   
-    fetch(`https://shufti-carwash-server.vercel.app/api/users/${userId}/wash-history`)
+    fetch(`https://localhost:5000/api/users/${userId}/wash-history`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Failed to fetch wash history (${response.status}: ${response.statusText})`);
@@ -93,7 +93,7 @@ export default UserDashboard;
 //     const fetchUserData = async (userId) => {
 //       try {
 //         // Fetch user data
-//         const userResponse = await Axios.get(`https://shufti-carwash-server.vercel.app/api/users/${userId}`);
+//         const userResponse = await Axios.get(`https://localhost:5000/api/users/${userId}`);
 //         const userData = userResponse.data;
 
 //         if (userResponse.status !== 200) {
@@ -102,7 +102,7 @@ export default UserDashboard;
 //         }
 
 //         // Fetch wash history
-//         const historyResponse = await Axios.get(`https://shufti-carwash-server.vercel.app/api/users/${userId}/wash-history`);
+//         const historyResponse = await Axios.get(`https://localhost:5000/api/users/${userId}/wash-history`);
 //         const historyData = historyResponse.data;
 
 //         if (historyResponse.status !== 200) {
