@@ -24,7 +24,7 @@ const Dashboard = ({carwashId}) => {
 
   const fetchCarWashData = async (carWashId) => {
     try {
-      const response = await axios.get(`https://localhost:5000/api/carwashes/${carWashId}`);
+      const response = await axios.get(`https://shufti-carwash-server.vercel.app/api/carwashes/${carWashId}`);
       // Process the response data
       
       setCarWash(response.data);

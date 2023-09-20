@@ -39,7 +39,7 @@ const RegistrationForm = () => {
     };
 
     try {
-      const response = await axios.post(`https://localhost:5000/api/users/${carWashId}/register`, userData);
+      const response = await axios.post(`https://shufti-carwash-server.vercel.app/api/users/${carWashId}/register`, userData);
       toast.success('Registration successful');
       console.log(response)
       navigate(`/staff/dashboard/${carWashId}`); // Navigate to the staff dashboard with the carWashId

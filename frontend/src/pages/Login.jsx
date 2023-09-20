@@ -33,7 +33,7 @@ function Login() {
     };
   
     try {
-      const response = await fetch(`https://localhost:5000/api/users/${carWashId}/login`, {
+      const response = await fetch(`https://shufti-carwash-server.vercel.app/api/users/${carWashId}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
