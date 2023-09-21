@@ -21,7 +21,7 @@ console.log('User ID:', userId);
   const fetchWashHistory = (userId) => {
     setIsLoading(true);
   
-    fetch(`https://shufti-carwash-server.vercel.app/api/users/${userId}/wash-history`)
+    fetch(`https://shufti-carwash-server.vercel.app/api/users/65013b2bb819c24f96025967/wash-history`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Failed to fetch wash history (${response.status}: ${response.statusText})`);
