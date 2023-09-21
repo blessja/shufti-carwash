@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
  
   const { carWashId } = useParams(); // Get the car wash ID from the URL
 
