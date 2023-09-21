@@ -31,7 +31,7 @@ function UserDashboard() {
 
   const fetchUserData = async (userId) => {
     try {
-      const response = await fetch(`https://shufti-production.up.railway.app/api/users/${userId}`);
+      const response = await fetch(`https://shufti-carwash-server.vercel.app/api/users/${userId}/wash-history`);
       const data = await response.json();
 
       if (response.ok) {
