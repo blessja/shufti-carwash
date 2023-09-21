@@ -26,24 +26,26 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      const response = await axios.post(`https://shufti-carwash-server.vercel.app/api/users/${carWashId}/login`, {
-        phone,
-        password,
-      });
-      const responseData = await response.json(); // Parse the response JSON
+      const response = await axios.post(
+        `https://shufti-carwash-server.vercel.app/api/users/${carWashId}/login`,
+        {
+          phone,
+          password,
+        }
+      );
       // Process the login response, e.g., store the token
       console.log('User login successful:', response.data);
-      const userId = responseData._id || '';
+      const userId = response.data._id || '';
       // Redirect to the staff dashboard or any other desired page
-           navigate(`/user/dashboard/${userId}`);
-
+      navigate(`/user/dashboard/${userId}`);
     } catch (error) {
       console.error('Error logging in as staff:', error);
       toast.error('Login failed');
     }
   };
+  
 
   return (
     <>
