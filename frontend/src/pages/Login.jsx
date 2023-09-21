@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const userId = location.pathname.split('/').pop(); // Extract the car wash ID from the URL
+ 
   const { carWashId } = useParams(); // Get the car wash ID from the URL
 
 
@@ -32,10 +32,10 @@ const Login = () => {
         phone,
         password,
       });
-
+      const responseData = await response.json(); // Parse the response JSON
       // Process the login response, e.g., store the token
       console.log('User login successful:', response.data);
-
+      const userId = responseData._id || '';
       // Redirect to the staff dashboard or any other desired page
            navigate(`/user/dashboard/${userId}`);
 
