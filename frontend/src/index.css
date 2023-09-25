@@ -399,6 +399,8 @@ label {
 }
 
 /* ===================================================================== */
+/* Mobile styles */
+
 
 @keyframes spin {
   0% {
@@ -430,7 +432,11 @@ label {
   .logo {
     gap: 60px !important;
   }
-
+  .header img {
+    object-fit: contain;
+    width: 50px !important;
+    height: 50px !important;
+  }
   .heading ul {
     display: block !important;
   }
@@ -465,6 +471,11 @@ label {
   .heading {
     width: 100%;
     padding: 0;
+  }
+  .header img {
+    object-fit: contain;
+    width: 50px !important;
+    height: 50px !important;
   }
   /* .heading p {
     font: 200;
@@ -552,6 +563,7 @@ label {
   } */
 
   .header img {
+    object-fit: contain;
     width: 50px !important;
     height: 50px !important;
   }
@@ -605,6 +617,7 @@ label {
   }
 
   .header img {
+    object-fit: contain;
     width: 50px !important;
     height: 50px !important;
   }
@@ -654,6 +667,7 @@ label {
   }
 
   .header img {
+    object-fit: contain;
     width: 50px !important;
     height: 50px !important;
   }
@@ -709,6 +723,7 @@ label {
   }
 
   .header img {
+    object-fit: contain;
     width: 50px !important;
     height: 50px !important;
   }

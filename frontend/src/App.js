@@ -18,12 +18,13 @@ function App() {
     <>
       <Router>
         <div className='container'>
-          <Header />
+          {/* <Header /> */}
           <Routes>
             <Route path='/' element={<CarWashList />} />
             <Route path='/login/:carWashId' element={<Login />} />
+            <Route path='/login' element={<Login />} />
             <Route path='/staff/login/:carWashId' element={<StaffLogin />} />
-            <Route path='/user/dashboard/:userId' element={<UserDashboard />} />
+            <Route path='/user/dashboard/:userId/:carWashId' element={<UserDashboard />} />
             {/* <Route path='/:carWashId/user/dashboard/:id' element={<UserDashboard />} /> */}
      
             
@@ -33,7 +34,8 @@ function App() {
             <Route path='/users/:id/:carWashId' element={<UserDetails />} />
             <Route path='/profile' element={<ProfileEdit />} />
             <Route path='/register-customer/:carWashId' element={<RegistrationForm />} /> 
-            <Route path='/:id/dashboard' element={<Dashboard />} />
+            <Route path='/:carWashId/dashboard' element={<Dashboard />} />
+            
             {/* <Route path='/:carwash_id/dashboard' element={<Dashboard />} /> */}
 
           </Routes>

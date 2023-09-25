@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate, useParams } from "react-router-dom";
+import Header from "../components/Header";
 
 const Login = () => {
   const navigate = useNavigate();
   // const location = useLocation();
- 
+
   const { carWashId } = useParams(); // Get the car wash ID from the URL
 
-
   const [formData, setFormData] = useState({
-    phone: '',
-    password: '',
+    phone: "",
+    password: "",
   });
 
   const { phone, password } = formData;
@@ -26,7 +26,7 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       const response = await axios.post(
         `https://shufti-carwash-server.vercel.app/api/users/${carWashId}/login`,
@@ -36,21 +36,24 @@ const Login = () => {
         }
       );
       // Process the login response, e.g., store the token
-      console.log('User login successful:', response.data);
-      const userId = response.data._id || '';
+      console.log("User login successful:", response.data);
+      const userId = response.data._id || "";
       // Redirect to the staff dashboard or any other desired page
-      navigate(`/user/dashboard/${userId}`);
+      navigate(`/user/dashboard/${userId}/${carWashId}`);
     } catch (error) {
-      console.error('Error logging in as staff:', error);
-      toast.error('Login failed');
+      console.error("Error logging in as staff:", error);
+      toast.error("Login failed");
     }
   };
-  
 
   return (
     <>
+      <Header />
       <section className="heading">
-        <h1 style={{ fontSize: '23px', fontWeight: '600', paddingTop: '20px' }} className="login-title">
+        <h1
+          style={{ fontSize: "23px", fontWeight: "600", paddingTop: "20px" }}
+          className="login-title"
+        >
           LOG IN
         </h1>
       </section>
@@ -95,8 +98,6 @@ const Login = () => {
 
 export default Login;
 
-
-
 // import { useState } from 'react';
 // import { useNavigate, useParams } from 'react-router-dom';
 // import { toast } from 'react-toastify';
@@ -125,12 +126,12 @@ export default Login;
 //   const onSubmit = async (e) => {
 //     e.preventDefault();
 //     setIsLoading(true);
-  
+
 //     const userData = {
 //       phone,
 //       password,
 //     };
-  
+
 //     try {
 //       const response = await fetch(`https://shufti-carwash-server.vercel.app/api/users/${carWashId}/login`, {
 //         method: 'POST',
@@ -139,20 +140,20 @@ export default Login;
 //         },
 //         body: JSON.stringify(userData),
 //       });
-  
+
 //       if (!response.ok) {
 //         const errorData = await response.json();
 //         throw new Error(errorData.message);
 //       }
-  
+
 //       const responseData = await response.json(); // Parse the response JSON
-  
+
 //       setIsLoading(false);
 //       toast.success('Login successful');
-  
+
 //       // Extract the user ID from the response data
 //       const userId = responseData._id || ''; // Assuming the user ID is stored in the "_id" field
-  
+
 //       // Redirect the user to the dashboard with the extracted user ID
 //       navigate(`/user/dashboard/${userId}`);
 //     } catch (error) {
@@ -161,7 +162,6 @@ export default Login;
 //       toast.error('Login failed. Please check your credentials.');
 //     }
 //   };
-  
 
 //   if (isLoading) {
 //     return <Spinner />;
@@ -173,7 +173,7 @@ export default Login;
 //         <h1 style={{fontSize: "23px", fontWeight: "600", paddingTop: "20px"}} className='login-title'>
 //         LOG IN
 //         </h1>
-       
+
 //       </section>
 
 //       <section className='form'>
@@ -185,7 +185,7 @@ export default Login;
 //               id='phone'
 //               name='phone'
 //               value={phone}
-//               placeholder='Cell Number' 
+//               placeholder='Cell Number'
 //               onChange={onChange}
 //               autoComplete='on'
 //             />

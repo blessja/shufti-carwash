@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate, useLocation } from "react-router-dom";
+import Header from "../components/Header";
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const carwashId = location.pathname.split('/').pop(); // Extract the car wash ID from the URL
+  const carwashId = location.pathname.split("/").pop(); // Extract the car wash ID from the URL
 
   const [formData, setFormData] = useState({
-    phone: '',
-    password: '',
+    phone: "",
+    password: "",
   });
 
   const { phone, password } = formData;
@@ -26,26 +27,33 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`https://shufti-carwash-server.vercel.app/api/staff/${carwashId}/login`, {
-        phone,
-        password,
-      });
+      const response = await axios.post(
+        `https://shufti-carwash-server.vercel.app/api/staff/${carwashId}/login`,
+        {
+          phone,
+          password,
+        }
+      );
 
       // Process the login response, e.g., store the token
-      console.log('Staff login successful:', response.data);
+      console.log("Staff login successful:", response.data);
 
       // Redirect to the staff dashboard or any other desired page
       navigate(`/staff/dashboard/${carwashId}`);
     } catch (error) {
-      console.error('Error logging in as staff:', error);
-      toast.error('Login failed');
+      console.error("Error logging in as staff:", error);
+      toast.error("Login failed");
     }
   };
 
   return (
     <>
+      <Header />
       <section className="heading">
-        <h1 style={{ fontSize: '23px', fontWeight: '600', paddingTop: '20px' }} className="login-title">
+        <h1
+          style={{ fontSize: "23px", fontWeight: "600", paddingTop: "20px" }}
+          className="login-title"
+        >
           LOG IN
         </h1>
       </section>

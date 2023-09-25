@@ -88,75 +88,74 @@ const UserDetails = () => {
 
   return (
     <ThemeProvider theme={theme}>
+    <div
+      style={{ background: "#fff", padding: "20px", borderRadius: "8px" }}
+    >
+      <h3 style={{ marginBottom: "20px", color: "#4682B4", fontFamily: "Montserrat", paddingTop:"40px", fontWeight: "600", fontSize: "19px" }}>
+        RECORD A WASH
+      </h3>
       <div
-        style={{ background: "#fff", padding: "20px", borderRadius: "8px" }}
+        style={{
+          background: "#4682B4",
+          opacity: "1",
+          padding: "20px",
+          borderRadius: "8px",
+          textAlign: "left"
+        }}
       >
-        <h3 style={{ marginBottom: "20px", color: "#4682B4", fontFamily: "Montserrat", paddingTop:"40px", fontWeight: "600", fontSize: "19px" }}>
-          RECORD A WASH
-        </h3>
-        <div
+      <div>
+      <p
           style={{
-            background: "#4682B4",
+            marginBottom: "10px",
             opacity: "1",
-            padding: "20px",
-            borderRadius: "8px",
-            textAlign: "left"
+            color: "white",
+            fontFamily: "Montserrat",
+            fontWeight: "bolder"
           }}
         >
-        <div>
-        <p
-            style={{
-              marginBottom: "10px",
-              opacity: "1",
-              color: "#045293",
-              fontFamily: "Montserrat",
-              fontWeight: "bolder"
-            }}
-          >
-          {user.name}
-          </p>
-          <p style={{ marginBottom: "10px", color: "#fff", fontFamily: "Montserrat",
-              fontWeight: "lighter" }}>{user.phone}</p>
-          <p style={{ marginBottom: "10px",  color: "#fff",  fontFamily: "Montserrat",
-              fontWeight: "lighter" }}>
-             {user.number_plate}
-          </p>
-          <p style={{ marginBottom: "10px", color: "#fff",fontFamily: "Montserrat",
-              fontWeight: "lighter"  }}> {user.car}</p>
-        </div>
-        
-        </div>
-        <div style={{ display: "flex", justifyContent: "center", paddingTop: "30px",}}>
-        <Button
-            variant="contained"
-            
-            onClick={handleWashCar}
-            // disabled={isButtonDisabled}
-            style={{ marginTop: "10px", backgroundColor: "#4682B4",color: "#fff",   }}
-            component="button"
-            
-          >Wash Car
-            {/* {isButtonDisabled ? "Car Washed" : "Wash Car"} */}
-          </Button>
-        </div>
-        <Button
-          style={{ marginTop: "60px", backgroundColor: "#4682B4", color: "#fff", }}
+        {user.name}
+        </p>
+        <p style={{ marginBottom: "10px", color: "#fff", fontFamily: "Montserrat",
+            fontWeight: "lighter" }}>{user.phone}</p>
+        <p style={{ marginBottom: "10px",  color: "#fff",  fontFamily: "Montserrat",
+            fontWeight: "lighter" }}>
+           {user.number_plate}
+        </p>
+        <p style={{ marginBottom: "10px", color: "#fff",fontFamily: "Montserrat",
+            fontWeight: "lighter"  }}> {user.car}</p>
+      </div>
+      
+      </div>
+      <div style={{ display: "flex", justifyContent: "center", paddingTop: "30px",}}>
+      <Button className="btn"
           variant="contained"
-         
-          onClick={handleHomeClick}
-
+          
+          onClick={handleWashCar}
+          // disabled={isButtonDisabled}
+          style={{ marginTop: "10px", backgroundColor: "#4682B4",color: "#fff", width: "100%", borderRadius: "25px", fontFamily: "Montserrat",   }}
           component="button"
-        >
-          HOME
+        >Wash Car
+          {/* {isButtonDisabled ? "Car Washed" : "Wash Car"} */}
         </Button>
       </div>
-      <Snackbar
-        open={showNotification}
-        autoHideDuration={3000}
-        onClose={handleNotificationClose}
-        message="Wash successfully recorded"
-      />
-    </ThemeProvider>
+      <Button
+        style={{ marginTop: "60px", backgroundColor: "#fff", color: "#4682B4", border: "1px solid #4682B4", fontFamily: "Montserrat", width: "100%", borderRadius: "25px", }}
+        variant="contained"
+       
+        onClick={handleHomeClick}
+
+        component="button"
+      >
+        HOME
+      </Button>
+    </div>
+    <Snackbar
+      open={showNotification}
+      autoHideDuration={3000}
+      onClose={handleNotificationClose}
+      message="Wash successfully recorded"
+    />
+  </ThemeProvider>
   );
 };
 
