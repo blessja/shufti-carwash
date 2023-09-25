@@ -15,7 +15,7 @@ connectDB();
 
 const app = express();
 const corsOptions = {
-  origin: ['https://shufti-carwash.vercel.app', 'http://localhost:3000'],
+  origin: ['https://shufti-carwash.vercel.app', 'http://localhost:3000', 'https://www.shufti.co.za'],
 };
 
 app.use(cors(corsOptions));
