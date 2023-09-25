@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from 'axios';
-
+import axios from "axios";
+import Header from "../components/Header";
 
 const RegistrationForm = () => {
   const { carWashId } = useParams();
   const [formData, setFormData] = useState({
     number_plate: "",
+    name: "",
     phone: "",
     password: "",
     password2: "",
   });
 
-  const { number_plate, phone, password, password2 } = formData;
+  const { number_plate, name, phone, password, password2 } = formData;
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -27,30 +28,38 @@ const RegistrationForm = () => {
     e.preventDefault();
 
     if (password !== password2) {
-      toast.error('Passwords do not match');
+      toast.error("Passwords do not match");
       return;
     }
 
     const userData = {
       number_plate,
+      name,
       phone,
       password,
       carWashId, // Include the carWashId in the data
     };
 
     try {
-      const response = await axios.post(`https://shufti-carwash-server.vercel.app/api/users/${carWashId}/register`, userData);
-      toast.success('Registration successful');
-      console.log(response)
+      const response = await axios.post(
+        `https://shufti-carwash-server.vercel.app/api/users/${carWashId}/register`,
+        userData
+      );
+      toast.success("Registration successful");
+      console.log(response);
       navigate(`/staff/dashboard/${carWashId}`); // Navigate to the staff dashboard with the carWashId
     } catch (error) {
-      toast.error('Registration failed. Please try again.');
+      toast.error("Registration failed. Please try again.");
     }
   };
 
   return (
     <div>
-      <section className="heading">
+      <Header />
+      <section
+        style={{ paddingTop: "20px", paddingBottom: "20px" }}
+        className="heading"
+      >
         <h4>REGISTER NEW CUSTOMER</h4>
       </section>
       <section className="form">
@@ -63,6 +72,18 @@ const RegistrationForm = () => {
               name="number_plate"
               value={number_plate}
               placeholder="Customer number plate"
+              onChange={handleChange}
+              autoComplete="on"
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="name"
+              className="form-control"
+              id="name"
+              name="name"
+              value={name}
+              placeholder="Customer's name"
               onChange={handleChange}
               autoComplete="on"
             />

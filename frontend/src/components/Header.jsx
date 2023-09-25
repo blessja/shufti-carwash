@@ -1,18 +1,18 @@
-import { FaBars } from "react-icons/fa";
+// import { FaBars } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 function Header({ carWashName }) {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const mobileMenuRef = useRef(null);
+  // const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // const mobileMenuRef = useRef(null);
   const { carWashId } = useParams();
   const [carWash, setCarWash] = useState({ name: "", imageId: "" });
   const [carWashImage, setCarWashImage] = useState(""); // Initialize with an empty string
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  // const toggleMobileMenu = () => {
+  //   setIsMobileMenuOpen(!isMobileMenuOpen);
+  // };
 
   useEffect(() => {
     if (carWashId) {
