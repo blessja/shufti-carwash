@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import { store } from './app/store';
 import { Provider } from 'react-redux';
-import './styles/tailwind.css'
+// import './styles/tailwind.css'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
