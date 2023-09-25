@@ -93,6 +93,23 @@ router.get('/:id/users/:userId', async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
-// ... Rest of the code
+
+// create  a carwash
+router.post('/', async (req, res) => {
+  try {
+    const carWash = new CarWash({
+      name: req.body.name,
+      location: req.body.location,
+      users: []
+    });
+
+    await carWash.save();
+    res.status(201).json(carWash);
+  } catch (error) {
+    console.error('Error creating car wash:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+);
 
 module.exports = router;

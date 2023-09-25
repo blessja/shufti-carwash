@@ -12,6 +12,9 @@ import UserDetails from './components/UserDetails';
 import ProfileEdit from './pages/ProfileEdit';
 import RegistrationForm from './components/RegistrationForm'; // Add this line
 import CarWashList from './pages/CarWashList';
+import RegisterCarWash from './pages/RegisterCarWash';
+import Home from './pages/Home';
+
 
 function App() {
   return (
@@ -20,14 +23,12 @@ function App() {
         <div className='container'>
           {/* <Header /> */}
           <Routes>
-            <Route path='/' element={<CarWashList />} />
+            <Route path='/' element={<Home />} />
+            <Route path='/carwashes' element={<CarWashList />} />
             <Route path='/login/:carWashId' element={<Login />} />
             <Route path='/login' element={<Login />} />
             <Route path='/staff/login/:carWashId' element={<StaffLogin />} />
             <Route path='/user/dashboard/:userId/:carWashId' element={<UserDashboard />} />
-            {/* <Route path='/:carWashId/user/dashboard/:id' element={<UserDashboard />} /> */}
-     
-            
             <Route path='/staff/dashboard/' element={<StaffDashboard />} />
             <Route path='/staff/dashboard/:carWashId' element={<StaffDashboard />} />
             <Route path='/users/:id' element={<UserDetails />} />
@@ -35,8 +36,7 @@ function App() {
             <Route path='/profile' element={<ProfileEdit />} />
             <Route path='/register-customer/:carWashId' element={<RegistrationForm />} /> 
             <Route path='/:carWashId/dashboard' element={<Dashboard />} />
-            
-            {/* <Route path='/:carwash_id/dashboard' element={<Dashboard />} /> */}
+            <Route path='/register-carwash' element={<RegisterCarWash />} />
 
           </Routes>
         </div>

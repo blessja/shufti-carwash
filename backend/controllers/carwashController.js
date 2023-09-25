@@ -9,33 +9,25 @@ const Carwash = require('../models/carwashes')
 // @access Private
 
 const createCarwash = asyncHandler(async (req, res) => {
-    const { name, address, phone, email, website, opening_hours, description } = req.body
+    const { name, location} = req.body
 
-    if (!name || !address || !phone || !email || !website || !opening_hours || !description) {
+    if (!name || !location ) {
         res.status(400)
         throw new Error('Please add all fields')
     }
 
     const carwash = await Carwash.create({
         name,
-        address,
-        phone,
-        email,
-        website,
-        opening_hours,
-        description
+        location
+        
     })
 
     if (carwash) {
         res.status(201).json({
             _id: carwash._id,
             name: carwash.name,
-            address: carwash.address,
-            phone: carwash.phone,
-            email: carwash.email,
-            website: carwash.website,
-            opening_hours: carwash.opening_hours,
-            description: carwash.description
+            location: carwash.location,
+            
         })
     } else {
         res.status(400)

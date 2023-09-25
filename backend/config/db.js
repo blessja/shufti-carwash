@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect('mongodb+srv://admin-Jackson:jaydenjackson1@cluster0.bnu3c.mongodb.net/blessing?retryWrites=true&w=majority');
+    const conn = await mongoose.connect('mongodb+srv://admin-Jackson:jaydenjackson1@cluster0.bnu3c.mongodb.net/shufti?retryWrites=true&w=majority');
 
     console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline);
   } catch (error) {

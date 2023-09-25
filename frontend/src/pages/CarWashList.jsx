@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 const CarWashList = () => {
   const [carWashes, setCarWashes] = useState([]);
@@ -12,25 +12,32 @@ const CarWashList = () => {
   // Function to fetch car washes
   const fetchCarWashes = async () => {
     try {
-      const response = await axios.get('https://shufti-carwash-server.vercel.app/api/carwashes');
+      const response = await axios.get(
+        "https://shufti-carwash-server.vercel.app/api/carwashes"
+      );
       setCarWashes(response.data);
     } catch (error) {
-      console.error('Error fetching car washes:', error);
+      console.error("Error fetching car washes:", error);
     }
   };
 
   // Render the car washes
   return (
     <div>
-      <h1>Car Wash List</h1>
+      <h1 style={{ paddingTop: "20px" }}>Car Wash List</h1>
+      <Link to="/register-carwash">
+        <button>Register Car Wash</button>
+      </Link>
       {carWashes && carWashes.length > 0 ? (
         carWashes.map((carWash) => (
           <div key={carWash._id}>
-            <Link to={`/${carWash._id}/dashboard`}><h3>{carWash.name}</h3></Link>
+            <Link to={`/${carWash._id}/dashboard`}>
+              <h3>{carWash.name}</h3>
+            </Link>
           </div>
         ))
       ) : (
-        <p>No car washes found.</p>
+        <p style={{ paddingTop: "20px" }}>No car washes found.</p>
       )}
     </div>
   );

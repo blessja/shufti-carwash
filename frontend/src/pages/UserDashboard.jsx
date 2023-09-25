@@ -19,6 +19,20 @@ function UserDashboard() {
     fetchWashHistory(userId);
   }, [userId]);
 
+  useEffect(() => {
+    // Handle the browser's back button
+    window.addEventListener("popstate", () => {
+      navigate(`/${carWashId}/dashboard`);
+    });
+
+    return () => {
+      // Remove the event listener when the component unmounts
+      window.removeEventListener("popstate", () => {
+        navigate(`/${carWashId}/dashboard`);
+      });
+    };
+  }, [navigate]);
+
   const fetchWashHistory = (userId) => {
     setIsLoading(true);
 

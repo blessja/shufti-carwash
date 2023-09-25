@@ -9,7 +9,7 @@ const CarWash = require('../models/carwashes');
 // @access  Public
 // Register new user to a specific car wash
 const registerUser = asyncHandler(async (req, res) => {
-  const { password, phone, number_plate } = req.body;
+  const { password, phone, name, number_plate } = req.body;
   const { carwash_id } = req.params;
 
   if (!password || !phone || !number_plate) {
@@ -40,6 +40,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = await User.create({
     password: hashedPassword,
     phone,
+    name,
     number_plate,
     carwash_id: carwash_id, // Assign the carwash_id to the user
   });
@@ -51,11 +52,13 @@ const registerUser = asyncHandler(async (req, res) => {
   res.status(201).json({
     _id: user._id,
     phone: user.phone,
+    name: user.name,
     number_plate: user.number_plate,
     carwash_id: user.carwash_id,
     token: generateToken(user._id),
   });
 });
+
 
 
 
