@@ -13,6 +13,7 @@ function UserDashboard() {
   const [isLoading, setIsLoading] = useState(true);
   const { userId, carWashId } = useParams();
   const navigate = useNavigate();
+  const [isSixthWashFree, setIsSixthWashFree] = useState(false); // To track if 6th wash is free
 
   useEffect(() => {
     // Fetch wash history data when the component mounts
@@ -20,18 +21,11 @@ function UserDashboard() {
   }, [userId]);
 
   useEffect(() => {
-    // Handle the browser's back button
-    window.addEventListener("popstate", () => {
-      navigate(`/${carWashId}/dashboard`);
-    });
-
-    return () => {
-      // Remove the event listener when the component unmounts
-      window.removeEventListener("popstate", () => {
-        navigate(`/${carWashId}/dashboard`);
-      });
-    };
-  }, [navigate]);
+    // Check if the user has earned a free wash (6th wash is free)
+    if (washHistory.length >= 5) {
+      setIsSixthWashFree(true);
+    }
+  }, [washHistory]);
 
   const fetchWashHistory = (userId) => {
     setIsLoading(true);
@@ -68,10 +62,11 @@ function UserDashboard() {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  // const handleLogout = () => {
-  //   // Redirect the user to the desired route on logout
-  //   navigate(`/login/${carWashId}`);
-  // };
+  const handleLogout = () => {
+    // Redirect the user to the desired route on logout
+    localStorage.removeItem(userId);
+    navigate(`/${carWashId}/dashboard`);
+  };
 
   return (
     <Container maxWidth="sm">
@@ -90,66 +85,60 @@ function UserDashboard() {
       ) : (
         <div>
           <List>
-            {washHistory.length > 0 ? (
-              washHistory.map((wash, index) => (
-                <ListItem key={index} style={{ color: "#12F329" }}>
-                  <Grid container alignItems="center" spacing={0}>
-                    <Grid item xs={6}>
-                      <ListItemText primary={formatDate(wash.date)} />
-                    </Grid>
-                    <Grid item xs={2}>
+            {washHistory.map((wash, index) => (
+              <ListItem key={index} style={{ color: "#12F329" }}>
+                <Grid container alignItems="center" spacing={0}>
+                  <Grid item xs={6}>
+                    <ListItemText primary={formatDate(wash.date)} />
+                  </Grid>
+                  <Grid item xs={2}>
+                    <div
+                      style={{
+                        position: "relative",
+                        display: "inline-block",
+                        backgroundColor: "#12F329",
+                        borderRadius: "50%",
+                        width: "40px",
+                        height: "40px",
+                      }}
+                    >
                       <div
                         style={{
-                          position: "relative",
-                          display: "inline-block",
+                          position: "absolute",
+                          top: "50%",
+                          left: "50%",
                           backgroundColor: "#12F329",
-                          borderRadius: "50%",
-                          width: "40px",
-                          height: "40px",
+                          transform: "translate(-50%, -50%)",
                         }}
                       >
-                        <div
+                        <span
                           style={{
-                            position: "absolute",
-                            top: "50%",
-                            left: "50%",
+                            fontWeight: "bold",
                             backgroundColor: "#12F329",
-                            transform: "translate(-50%, -50%)",
+                            color: "white",
                           }}
                         >
-                          <span
-                            style={{
-                              fontWeight: "bold",
-                              backgroundColor: "#12F329",
-                              color: "white",
-                            }}
-                          >
-                            {index + 1}
-                          </span>
-                        </div>
+                          {index + 1}
+                        </span>
                       </div>
-                    </Grid>
-                    <Grid item xs={4}>
-                      <ListItemText primary="WASHED" align="center" />
-                    </Grid>
+                    </div>
                   </Grid>
-                </ListItem>
-              ))
-            ) : (
-              <Typography variant="body1">
-                No wash history available.
-              </Typography>
-            )}
+                  <Grid item xs={4}>
+                    <ListItemText primary="WASHED" align="center" />
+                  </Grid>
+                </Grid>
+              </ListItem>
+            ))}
           </List>
+          {isSixthWashFree && (
+            <Typography variant="body1">EARNED FREE WASH NEXT</Typography>
+          )}
         </div>
       )}
       <div
         style={{ display: "flex", justifyContent: "center", marginTop: "30px" }}
       >
-        <button
-          className="btn btn-block"
-          onClick={() => navigate(`/${carWashId}/dashboard`)}
-        >
+        <button className="btn btn-block" onClick={handleLogout}>
           Logout
         </button>
       </div>
