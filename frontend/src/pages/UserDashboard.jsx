@@ -13,19 +13,11 @@ function UserDashboard() {
   const [isLoading, setIsLoading] = useState(true);
   const { userId, carWashId } = useParams();
   const navigate = useNavigate();
-  const [isSixthWashFree, setIsSixthWashFree] = useState(false); // To track if 6th wash is free
 
   useEffect(() => {
     // Fetch wash history data when the component mounts
     fetchWashHistory(userId);
   }, [userId]);
-
-  useEffect(() => {
-    // Check if the user has earned a free wash (6th wash is free)
-    if (washHistory.length >= 5) {
-      setIsSixthWashFree(true);
-    }
-  }, [washHistory]);
 
   const fetchWashHistory = (userId) => {
     setIsLoading(true);
@@ -68,6 +60,9 @@ function UserDashboard() {
     navigate(`/${carWashId}/dashboard`);
   };
 
+  const washCount = washHistory.length;
+  const isSixthWashFree = washCount >= 5;
+
   return (
     <Container maxWidth="sm">
       <Header />
@@ -85,54 +80,62 @@ function UserDashboard() {
       ) : (
         <div>
           <List>
-            {washHistory.map((wash, index) => (
-              <ListItem key={index} style={{ color: "#12F329" }}>
-                <Grid container alignItems="center" spacing={0}>
-                  <Grid item xs={6}>
-                    <ListItemText primary={formatDate(wash.date)} />
-                  </Grid>
-                  <Grid item xs={2}>
-                    <div
-                      style={{
-                        position: "relative",
-                        display: "inline-block",
-                        backgroundColor: "#12F329",
-                        borderRadius: "50%",
-                        width: "40px",
-                        height: "40px",
-                      }}
-                    >
+            {washHistory.length > 0 ? (
+              washHistory.map((wash, index) => (
+                <ListItem key={index} style={{ color: "#12F329" }}>
+                  <Grid container alignItems="center" spacing={0}>
+                    <Grid item xs={6}>
+                      <ListItemText primary={formatDate(wash.date)} />
+                    </Grid>
+                    <Grid item xs={2}>
                       <div
                         style={{
-                          position: "absolute",
-                          top: "50%",
-                          left: "50%",
+                          position: "relative",
+                          display: "inline-block",
                           backgroundColor: "#12F329",
-                          transform: "translate(-50%, -50%)",
+                          borderRadius: "50%",
+                          width: "40px",
+                          height: "40px",
                         }}
                       >
-                        <span
+                        <div
                           style={{
-                            fontWeight: "bold",
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
                             backgroundColor: "#12F329",
-                            color: "white",
+                            transform: "translate(-50%, -50%)",
                           }}
                         >
-                          {index + 1}
-                        </span>
+                          <span
+                            style={{
+                              fontWeight: "bold",
+                              backgroundColor: "#12F329",
+                              color: "white",
+                            }}
+                          >
+                            {index + 1}
+                          </span>
+                        </div>
                       </div>
-                    </div>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <ListItemText
+                        primary={
+                          isSixthWashFree && index === 5 ? "FREE" : "WASHED"
+                        }
+                        align="center"
+                      />
+                    </Grid>
                   </Grid>
-                  <Grid item xs={4}>
-                    <ListItemText primary="WASHED" align="center" />
-                  </Grid>
-                </Grid>
-              </ListItem>
-            ))}
+                </ListItem>
+              ))
+            ) : (
+              <Typography variant="body1">
+                No wash history available.
+              </Typography>
+            )}
           </List>
-          {isSixthWashFree && (
-            <Typography variant="body1">EARNED FREE WASH NEXT</Typography>
-          )}
         </div>
       )}
       <div
