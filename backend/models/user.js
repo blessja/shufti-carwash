@@ -54,6 +54,7 @@ const userSchema = mongoose.Schema(
     //   required: false,
     // },
     washHistory: [washSchema], // Add the wash history field
+    archivedWashHistory: [washSchema],
   },
   {
     timestamps: true,

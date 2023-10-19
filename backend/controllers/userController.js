@@ -231,7 +231,61 @@ const getUserWashHistory = asyncHandler(async (req, res) => {
   res.status(200).json(user.washHistory);
 });
 
+const requestFreeWash = asyncHandler(async (req, res) => {
+  const id = req.params.id;
 
+  try {
+    // Retrieve the user by ID
+    const user = await User.findById(id);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    if (user.washHistory.length < 5) {
+      return res.status(400).json({ message: 'User is not eligible for a free wash yet' });
+    }
+
+    // Mark the free wash request and clear the wash history
+    // user.washHistory = [];
+    await user.save();
+
+    return res.status(200).json({ message: 'Free wash requested and wash history cleared' });
+  } catch (error) {
+    console.error('Error requesting free wash:', error);
+    return res.status(500).json({ message: 'Server error' });
+  }
+});
+
+const archiveWashHistory = asyncHandler(async (req, res) => {
+  const id = req.params.id;
+  const { washHistory } = req.body;
+
+  try {
+    // Find the user by ID
+    const user = await User.findById(id);
+
+    if (!user) {
+      res.status(404).json({ message: 'User not found' });
+      return;
+    }
+
+    // Archive the wash history
+    user.archivedWashHistory.push(...washHistory);
+    
+    // Clear the current wash history
+    user.washHistory = [];
+
+    // Save the updated user
+    await user.save();
+
+    res.status(200).json({ message: 'Wash history archived successfully' });
+  } catch (error) {
+    console.error('Error archiving wash history:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
+);
 
 
 module.exports = {
@@ -244,6 +298,8 @@ module.exports = {
   washCar,
   updateUserProfile,
   getUserProfile,
-  getUserWashHistory
+  getUserWashHistory,
+  requestFreeWash,
+  archiveWashHistory,
 
 }

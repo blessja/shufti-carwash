@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "proxy": "http://localhost:3000",
+  "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.22.3",
@@ -29,7 +29,7 @@
     "tailwindcss": "^3.3.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts --max-http-header-size=1024 start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

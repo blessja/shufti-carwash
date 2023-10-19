@@ -4,10 +4,6 @@ import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-
-
-
-
 const theme = createTheme({
   palette: {
     primary: {
@@ -16,16 +12,13 @@ const theme = createTheme({
   },
 });
 
-
-
-
 const UserDetails = () => {
   const { id } = useParams();
   const [user, setUser] = useState(null);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
 
-  console.log(isButtonDisabled)
+  console.log(isButtonDisabled);
   const handleHomeClick = () => {
     window.history.back(); // Go back to the previous page
   };
@@ -61,6 +54,8 @@ const UserDetails = () => {
       setIsButtonDisabled(true);
       localStorage.setItem(id, "true");
       setShowNotification(true);
+
+      window.history.back();
     } catch (error) {
       console.error("Error washing car:", error);
     }
@@ -70,92 +65,152 @@ const UserDetails = () => {
     setShowNotification(false);
   };
 
-  // useEffect(() => {
-  //   const handlePageReload = () => {
-  //     setIsButtonDisabled(localStorage.getItem(id) === "true");
-  //   };
-
-  //   window.addEventListener("beforeunload", handlePageReload);
-
-  //   return () => {
-  //     window.removeEventListener("beforeunload", handlePageReload);
-  //   };
-  // }, [id]);
-
   if (!user) {
     return <div>Loading...</div>;
   }
+  const formatDate = (dateString) => {
+    const options = {
+      weekday: "short",
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
 
   return (
     <ThemeProvider theme={theme}>
-    <div
-      style={{ background: "#fff", padding: "20px", borderRadius: "8px" }}
-    >
-      <h3 style={{ marginBottom: "20px", color: "#4682B4", fontFamily: "Montserrat", paddingTop:"40px", fontWeight: "600", fontSize: "19px" }}>
-        RECORD A WASH
-      </h3>
-      <div
-        style={{
-          background: "#4682B4",
-          opacity: "1",
-          padding: "20px",
-          borderRadius: "8px",
-          textAlign: "left"
-        }}
-      >
-      <div>
-      <p
+      <div style={{ background: "#fff", padding: "20px", borderRadius: "8px" }}>
+        <h3
           style={{
-            marginBottom: "10px",
-            opacity: "1",
-            color: "white",
+            marginBottom: "20px",
+            color: "#4682B4",
             fontFamily: "Montserrat",
-            fontWeight: "bolder"
+            paddingTop: "40px",
+            fontWeight: "600",
+            fontSize: "19px",
           }}
         >
-        {user.name}
-        </p>
-        <p style={{ marginBottom: "10px", color: "#fff", fontFamily: "Montserrat",
-            fontWeight: "lighter" }}>{user.phone}</p>
-        <p style={{ marginBottom: "10px",  color: "#fff",  fontFamily: "Montserrat",
-            fontWeight: "lighter" }}>
-           {user.number_plate}
-        </p>
-        <p style={{ marginBottom: "10px", color: "#fff",fontFamily: "Montserrat",
-            fontWeight: "lighter"  }}> {user.car}</p>
-      </div>
-      
-      </div>
-      <div style={{ display: "flex", justifyContent: "center", paddingTop: "30px",}}>
-      <Button className="btn"
+          RECORD A WASH
+        </h3>
+        <div
+          style={{
+            background: "#4682B4",
+            opacity: "1",
+            padding: "20px",
+            borderRadius: "8px",
+            textAlign: "left",
+          }}
+        >
+          <div>
+            <p
+              style={{
+                marginBottom: "10px",
+                opacity: "1",
+                color: "white",
+                fontFamily: "Montserrat",
+                fontWeight: "bolder",
+              }}
+            >
+              {user.name}
+            </p>
+            <p
+              style={{
+                marginBottom: "10px",
+                color: "#fff",
+                fontFamily: "Montserrat",
+                fontWeight: "lighter",
+              }}
+            >
+              {user.phone}
+            </p>
+            <p
+              style={{
+                marginBottom: "10px",
+                color: "#fff",
+                fontFamily: "Montserrat",
+                fontWeight: "lighter",
+              }}
+            >
+              {user.number_plate}
+            </p>
+            <p
+              style={{
+                marginBottom: "10px",
+                color: "#fff",
+                fontFamily: "Montserrat",
+                fontWeight: "lighter",
+              }}
+            >
+              {" "}
+              {user.car}
+            </p>
+          </div>
+
+          <div>
+            <p
+              style={{
+                marginBottom: "10px",
+                opacity: "1",
+                color: "white",
+                fontFamily: "Montserrat",
+                fontWeight: "bolder",
+              }}
+            >
+              Number of Washes: {user.washHistory.length}
+            </p>
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            paddingTop: "30px",
+          }}
+        >
+          <Button
+            className="btn"
+            variant="contained"
+            onClick={handleWashCar}
+            // disabled={isButtonDisabled}
+            style={{
+              marginTop: "10px",
+              backgroundColor: "#4682B4",
+              color: "#fff",
+              width: "100%",
+              borderRadius: "25px",
+              fontFamily: "Montserrat",
+            }}
+            component="button"
+          >
+            Wash Car
+            {/* {isButtonDisabled ? "Car Washed" : "Wash Car"} */}
+          </Button>
+        </div>
+        <Button
+          style={{
+            marginTop: "60px",
+            backgroundColor: "#fff",
+            color: "#4682B4",
+            border: "1px solid #4682B4",
+            fontFamily: "Montserrat",
+            width: "100%",
+            borderRadius: "25px",
+          }}
           variant="contained"
-          
-          onClick={handleWashCar}
-          // disabled={isButtonDisabled}
-          style={{ marginTop: "10px", backgroundColor: "#4682B4",color: "#fff", width: "100%", borderRadius: "25px", fontFamily: "Montserrat",   }}
+          onClick={handleHomeClick}
           component="button"
-        >Wash Car
-          {/* {isButtonDisabled ? "Car Washed" : "Wash Car"} */}
+        >
+          HOME
         </Button>
       </div>
-      <Button
-        style={{ marginTop: "60px", backgroundColor: "#fff", color: "#4682B4", border: "1px solid #4682B4", fontFamily: "Montserrat", width: "100%", borderRadius: "25px", }}
-        variant="contained"
-       
-        onClick={handleHomeClick}
-
-        component="button"
-      >
-        HOME
-      </Button>
-    </div>
-    <Snackbar
-      open={showNotification}
-      autoHideDuration={3000}
-      onClose={handleNotificationClose}
-      message="Wash successfully recorded"
-    />
-  </ThemeProvider>
+      <Snackbar
+        open={showNotification}
+        autoHideDuration={3000}
+        onClose={handleNotificationClose}
+        message="Wash successfully recorded"
+      />
+    </ThemeProvider>
   );
 };
 

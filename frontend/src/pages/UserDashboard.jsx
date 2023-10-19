@@ -44,6 +44,54 @@ function UserDashboard() {
       });
   };
 
+  const handleLogout = () => {
+    // Redirect the user to the desired route on logout
+    localStorage.removeItem("userId"); // Replace with your actual user identifier
+    navigate(`/${carWashId}/dashboard`);
+  };
+
+  const washCount = washHistory.length;
+  const isTenthWashFree = washCount >= 9;
+
+  useEffect(() => {
+    // Check if the user has reached the 10 washes
+    if (isTenthWashFree) {
+      // Schedule the archive and clear process after 24 hours
+      const archiveTimer = setTimeout(() => {
+        archiveWashHistory();
+      }, 24 * 60 * 60 * 1000); // 24 hours in milliseconds
+
+      // Clear the timer on unmount or when the history is archived manually
+      return () => clearTimeout(archiveTimer);
+    }
+  }, [isTenthWashFree]);
+
+  const archiveWashHistory = () => {
+    // Send a request to the server to archive wash history
+    fetch(`http://localhost:3000/api/users/archive-wash-history/${userId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ washHistory }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Failed to archive wash history (${response.status}: ${response.statusText})`
+          );
+        }
+        return response.json();
+      })
+      .then(() => {
+        // Clear the wash history after archiving
+        setWashHistory([]);
+      })
+      .catch((error) => {
+        console.error("Error archiving wash history:", error.message);
+      });
+  };
+
   const formatDate = (dateString) => {
     const options = {
       weekday: "short",
@@ -54,15 +102,6 @@ function UserDashboard() {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  const handleLogout = () => {
-    // Redirect the user to the desired route on logout
-    localStorage.removeItem(userId);
-    navigate(`/${carWashId}/dashboard`);
-  };
-
-  const washCount = washHistory.length;
-  const isSixthWashFree = washCount >= 5;
-
   return (
     <Container maxWidth="sm">
       <Header />
@@ -70,9 +109,16 @@ function UserDashboard() {
       <Typography
         variant="h5"
         gutterBottom
-        style={{ color: "#4682B4", marginTop: "30px", marginBottom: "60px" }}
+        style={{ color: "#4682B4", marginTop: "30px", marginBottom: "10px" }}
       >
         UPCOMING DISCOUNTS
+      </Typography>
+
+      <Typography
+        gutterBottom
+        style={{ color: "#4682B4", marginTop: "30px", marginBottom: "60px" }}
+      >
+        THE 10th WASH IS FREE
       </Typography>
 
       {isLoading ? (
@@ -122,7 +168,7 @@ function UserDashboard() {
                     <Grid item xs={4}>
                       <ListItemText
                         primary={
-                          isSixthWashFree && index === 5 ? "FREE" : "WASHED"
+                          isTenthWashFree && index === 9 ? "FREE" : "WASHED"
                         }
                         align="center"
                       />
